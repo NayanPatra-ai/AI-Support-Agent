@@ -1,25 +1,128 @@
-# OrbitDesk Support Agent Starter Pack
+# OrbitDesk AI Support Agent
 
-This package contains the source material for the AI Engineer Internship Assignment.
+An AI-powered customer support agent built for the OrbitDesk AI Engineer Internship Assignment.
 
-OrbitDesk is a fictional workspace product used by teams to build dashboards, schedule exports, connect data sources and manage API integrations. No external product knowledge is required or expected.
+## Features
 
-## Package Contents
+- LangGraph-based workflow
+- Local Hugging Face language model
+- FAISS vector search for retrieval
+- Knowledge Base question answering
+- Structured JSON responses
+- Source references for every answer
+- Multiple routing paths:
+  - Answerable
+  - Requires Clarification
+  - Requires Escalation
+  - Out of Scope
 
-- `knowledge_base/`: Current product documentation. Treat these files as the primary source of truth.
-- `resolved_cases.json`: Previously resolved support cases. Cases marked `superseded` are historical and must not override current documentation.
-- `sample_questions.json`: Five questions that exercise different workflow paths.
-- `output_schema.json`: A starter JSON Schema for structured responses.
+## Tech Stack
 
-## Important Notes
+- Python 3
+- LangGraph
+- LangChain
+- Hugging Face Transformers
+- Sentence Transformers
+- FAISS
+- JSON Schema
 
-- Build answers only from the supplied material.
-- Source references should use document IDs, filenames or resolved-case IDs.
-- The knowledge base takes precedence over resolved cases if the two conflict.
-- A resolved case marked `superseded` may be useful for testing retrieval and verification, but its resolution must not be presented as current guidance.
-- Do not assume that the system can perform account changes, issue refunds or contact external parties.
-- You may add local indexes, embeddings or generated test fixtures inside your own repository.
+## Project Structure
 
-## Suggested Entry Point
+```
+AI-Support-Agent/
+│
+├── app.py
+├── graph.py
+├── triage.py
+├── retrieval.py
+├── generator.py
+├── verifier.py
+├── state.py
+├── config.py
+├── knowledge_base/
+├── resolved_cases.json
+├── sample_questions.json
+├── output_schema.json
+├── requirements.txt
+└── README.md
+```
 
-Start with the questions in `sample_questions.json`, but ensure that your application can accept new natural-language questions as well.
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/AI-Support-Agent.git
+cd AI-Support-Agent
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it:
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run
+
+```bash
+python app.py
+```
+
+## Workflow
+
+```
+User Question
+        │
+        ▼
+     Triage
+        │
+        ▼
+    Retrieval
+        │
+        ▼
+    Generator
+        │
+        ▼
+     Verifier
+        │
+        ▼
+ Structured JSON Response
+```
+
+## Sample Output
+
+```json
+{
+  "classification": "answerable",
+  "answer": "...",
+  "sources": [
+    {
+      "source_id": "...",
+      "passage": "..."
+    }
+  ],
+  "confidence": 0.95,
+  "requires_human": false,
+  "reason": "Answer verified using retrieved documentation."
+}
+```
+
+## Notes
+
+- Uses only the supplied knowledge base.
+- Does not provide refunds, legal advice, or unsupported actions.
+- Designed to answer both the provided sample questions and new natural-language questions.
