@@ -126,3 +126,7 @@ User Question
 - Uses only the supplied knowledge base.
 - Does not provide refunds, legal advice, or unsupported actions.
 - Designed to answer both the provided sample questions and new natural-language questions.
+
+## AI Assistance Disclosure
+
+I used ChatGPT as a coding assistant during the development of this project for implementation guidance, debugging, code explanations, and code review. I tested and verified the submitted implementation and understand the architecture and code sufficiently to explain and modify it during an interview.
